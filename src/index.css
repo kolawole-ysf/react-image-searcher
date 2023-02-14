@@ -51,13 +51,15 @@ h2{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  width: 60%;
-  
-  
+  width: 90%;
+  margin: auto;
 }
 .grid-item{
-  width: 350px;
-  height: 350px;
+  min-width: 300px;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 12px;
   position: relative;
   overflow: hidden;
@@ -87,7 +89,7 @@ img{
   font-size: 16px;
   font-weight: bold;
   text-align: justify;
-  padding: 10px;
+  padding:10px;
 }
 .btn{
   text-decoration: none;
@@ -96,16 +98,44 @@ img{
   font-weight: bold;
   color: black;
   background-color: white;
-  border-radius: 20px;
+  border-radius: 10px;
   margin-left: 10px;
+  outline: none;
+  border: none;
 }
 .footer{
   width: 100%;
   background-color: black;
   text-align: center;
-  padding: 20px;
+  padding: 20px 0px;
   margin-top: 20px;
 }
 .footer span{
   color: white;
+}
+
+@media screen and (max-width: 1020px){
+  .grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    width: 90%;
+    margin: auto;
+  }
+  .grid-item{
+    min-width: 300px;
+    min-height: 300px;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+}
+@media screen and (max-width: 600px){
+  .grid{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+    width: 90%;
+  }
 }
