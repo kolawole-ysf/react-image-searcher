@@ -1,24 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+
+import Header from "./components/Header";
+import Gallery from "./components/Gallery";
+import Axios from 'axios';
+import { useState } from "react";
+import Footer from "./components/Footer";
 
 function App() {
+  const [search, setSearch]=useState('')
+  const [images, setImages]=useState([])
+  const [searchValue, setSearchValue]=useState([])
+
+  const baseURL='https://api.unsplash.com';
+  const APP_ID="DWO59rnjMed1_fO1xWAiHTvAdtAAjrZ0gby9h6KHrFo"
+
+  const url=`${baseURL}/search/photos?page=1&query=${search}&client_id=${APP_ID}`;
+
+
+
+  const fetchData= async ()=>{
+    const response= await Axios.get(url)
+    console.log(response.data.results)
+    setSearchValue(search)
+    setImages(response.data.results)
+    setSearch(" ")
+  }
+
+  const onSubmit=(e)=>{
+    e.preventDefault();
+    fetchData()
+    
+  }
+  const onKeyDown=(e)=>{
+    if(e.key==='Enter'){
+      fetchData()
+
+    }
+  }
+  const onChange=(e)=>{
+    setSearch(e.target.value)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header onSubmit={onSubmit} onChange={onChange} onKeyDown={onKeyDown} />
+      <Gallery images={images} searchValue={searchValue} />
+      <Footer />
+    </>
   );
 }
 
