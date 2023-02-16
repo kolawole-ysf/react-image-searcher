@@ -8,14 +8,12 @@ import Footer from "./components/Footer";
 function App() {
   const [search, setSearch]=useState('')
   const [images, setImages]=useState([])
-  const [searchValue, setSearchValue]=useState([])
+  const [searchValue, setSearchValue]=useState('')
 
   const baseURL='https://api.unsplash.com';
   const APP_ID="DWO59rnjMed1_fO1xWAiHTvAdtAAjrZ0gby9h6KHrFo"
 
   const url=`${baseURL}/search/photos?page=1&query=${search}&client_id=${APP_ID}`;
-
-
 
   const fetchData= async ()=>{
     const response= await Axios.get(url)
@@ -33,15 +31,19 @@ function App() {
   const onKeyDown=(e)=>{
     if(e.key==='Enter'){
       fetchData()
-
     }
   }
+  const onClick=()=>{
+         fetchData()
+         
+    }
+  
   const onChange=(e)=>{
     setSearch(e.target.value)
   }
   return (
     <>
-      <Header onSubmit={onSubmit} onChange={onChange} onKeyDown={onKeyDown} />
+      <Header onSubmit={onSubmit} onChange={onChange} onClick={onClick} onKeyDown={onKeyDown} />
       <Gallery images={images} searchValue={searchValue} />
       <Footer />
     </>

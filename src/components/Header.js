@@ -1,4 +1,4 @@
-const Header = ({ onSubmit, onChange, onKeyDown, images}) => {
+const Header = ({ onSubmit,onClick , onChange, onKeyDown, images}) => {
   
   return (
     <div className="header">
@@ -11,6 +11,12 @@ const Header = ({ onSubmit, onChange, onKeyDown, images}) => {
             onKeyDown={onKeyDown}
             value={images}
             placeholder="Search for anything..."/>
+            <input 
+            type="submit" 
+            className="submit-btn" 
+            onClick={onClick}
+            value="search"
+            />
         </form>
     </div>
   )
